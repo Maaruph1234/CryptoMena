@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Voltix Company Ltd — Engineering Certainty. Delivered.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:        #0b1d33;
+      --navy-mid:    #0f2a4a;
+      --navy-deep:   #071525;
+      --steel:       #3d4f63;
+      --steel-light: #8fa8bf;
+      --steel-pale:  #c4d4e0;
+      --green:       #22c55e;
+      --green-dark:  #15803d;
+      --green-glow:  rgba(34,197,94,0.12);
+      --green-line:  rgba(34,197,94,0.08);
+      --white:       #eef4f8;
+      --dim:         rgba(143,168,191,0.7);
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{
+      font-family:'Open Sans',sans-serif;
+      background:var(--navy-deep);
+      color:var(--white);
+      overflow-x:hidden;
+    }
+
+    /* ══ UTILITY ══ */
+    .section-wrap{ position:relative; }
+    .inner{ max-width:1200px;margin:0 auto;padding:0 2rem; }
+    .sec-label{
+      font-family:'Montserrat',sans-serif;
+      font-size:10px;letter-spacing:5px;color:var(--green);
+      text-transform:uppercase;margin-bottom:.5rem;
+      display:flex;align-items:center;gap:12px;
+    }
+    .sec-label::before{content:'';width:28px;height:1px;background:var(--green);}
+    h2{
+      font-family:'Montserrat',sans-serif;
+      font-size:clamp(30px,4.5vw,54px);
+      font-weight:800;letter-spacing:-0.5px;line-height:1.05;
+      color:var(--white);
+    }
+    h2 span{color:var(--green);}
+    .sub{
+      font-size:15px;color:var(--dim);
+      line-height:1.8;max-width:560px;
+      margin-top:.9rem;font-weight:300;
+    }
+
+    /* ══ ENG-GRID BACKGROUND ══ */
+    .eng-grid{
+      position:relative;overflow:hidden;
+    }
+    .eng-grid::before{
+      content:'';position:absolute;inset:0;
+      background-image:
+        linear-gradient(var(--green-line) 1px,transparent 1px),
+        linear-gradient(90deg,var(--green-line) 1px,transparent 1px),
+        linear-gradient(rgba(34,197,94,0.03) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(34,197,94,0.03) 1px,transparent 1px);
+      background-size:22px 22px,22px 22px,110px 110px,110px 110px;
+      pointer-events:none;z-index:0;
+    }
+
+    /* ══ NAVBAR ══ */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:200;
+      background:rgba(7,21,37,0.95);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(34,197,94,0.18);
+      height:68px;display:flex;align-items:center;
+      padding:0 2rem;justify-content:space-between;
+      transition:box-shadow .3s;
+    }
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+    .logo-bolt{
+      width:38px;height:38px;
+      background:var(--green);
+      clip-path:polygon(50% 0%,90% 20%,75% 50%,100% 50%,50% 100%,25% 55%,45% 55%,10% 20%);
+      flex-shrink:0;
+    }
+    .logo-text-wrap{display:flex;flex-direction:column;line-height:1;}
+    .logo-text-wrap span:first-child{
+      font-family:'Montserrat',sans-serif;
+      font-size:19px;font-weight:900;letter-spacing:2px;color:var(--white);
+    }
+    .logo-text-wrap span:last-child{
+      font-size:9px;letter-spacing:3px;color:var(--green);text-transform:uppercase;
+    }
+    .nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center;}
+    .nav-links a{
+      font-family:'Montserrat',sans-serif;
+      font-size:11px;letter-spacing:2px;text-transform:uppercase;
+      color:var(--steel-light);text-decoration:none;
+      transition:color .2s;position:relative;
+    }
+    .nav-links a::after{
+      content:'';position:absolute;bottom:-4px;left:0;right:0;
+      height:1px;background:var(--green);
+      transform:scaleX(0);transition:transform .3s;transform-origin:left;
+    }
+    .nav-links a:hover{color:var(--white);}
+    .nav-links a:hover::after{transform:scaleX(1);}
+    .nav-cta{
+      background:var(--green);color:var(--navy-deep) !important;
+      padding:9px 22px;font-weight:700 !important;
+      clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);
+    }
+    .nav-cta::after{display:none !important;}
+    .nav-cta:hover{background:#4ade80 !important;}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+    .hamburger span{width:24px;height:2px;background:var(--white);display:block;}
+
+    /* ══ HERO ══ */
+    #hero{
+      min-height:100vh;
+      background:linear-gradient(135deg,#071525 0%,#0b1d33 50%,#071f14 100%);
+      display:flex;align-items:center;
+      padding-top:68px;
+    }
+    .hero-inner{
+      position:relative;z-index:2;
+      display:grid;grid-template-columns:1.1fr 0.9fr;
+      gap:4rem;align-items:center;
+      padding:4rem 0;
+    }
+    .hero-eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      font-family:'Montserrat',sans-serif;
+      font-size:10px;letter-spacing:5px;color:var(--green);
+      text-transform:uppercase;
+      border:1px solid rgba(34,197,94,0.25);
+      padding:6px 16px;margin-bottom:1.5rem;
+    }
+    .hero-eyebrow::before{content:'⚡';font-size:10px;}
+    h1{
+      font-family:'Montserrat',sans-serif;
+      font-size:clamp(40px,6vw,80px);
+      font-weight:900;line-height:.95;letter-spacing:-1px;
+      color:var(--white);
+    }
+    h1 .accent{color:var(--green);display:block;}
+    h1 .sub-h{
+      font-size:clamp(14px,2vw,20px);
+      font-weight:300;letter-spacing:4px;
+      color:var(--steel-light);display:block;
+      margin-top:.6rem;
+    }
+    .hero-desc{
+      font-size:15px;color:var(--dim);line-height:1.85;
+      margin:1.8rem 0 2.2rem;max-width:500px;font-weight:300;
+    }
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+    .btn-p{
+      background:var(--green);color:var(--navy-deep);
+      padding:13px 32px;
+      font-family:'Montserrat',sans-serif;
+      font-size:11px;letter-spacing:3px;font-weight:700;
+      text-transform:uppercase;text-decoration:none;
+      clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);
+      transition:all .3s;display:inline-block;border:none;cursor:pointer;
+    }
+    .btn-p:hover{background:#4ade80;transform:translateY(-2px);}
+    .btn-o{
+      border:1px solid rgba(34,197,94,0.4);color:var(--white);
+      padding:13px 32px;
+      font-family:'Montserrat',sans-serif;
+      font-size:11px;letter-spacing:3px;font-weight:600;
+      text-transform:uppercase;text-decoration:none;
+      clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);
+      transition:all .3s;display:inline-block;
+    }
+    .btn-o:hover{background:var(--green-glow);border-color:var(--green);}
+    .hero-stats{
+      display:flex;gap:2.5rem;margin-top:3rem;
+      padding-top:2rem;border-top:1px solid rgba(34,197,94,0.12);
+    }
+    .hstat-num{
+      font-family:'Montserrat',sans-serif;
+      font-size:36px;font-weight:900;color:var(--green);line-height:1;
+    }
+    .hstat-lbl{
+      font-size:10px;letter-spacing:2px;color:var(--steel-light);
+      text-transform:uppercase;margin-top:4px;
+    }
+
+    /* Hero circuit panel */
+    .hero-panel{position:relative;}
+    .circuit-card{
+      background:rgba(11,29,51,0.85);
+      border:1px solid rgba(34,197,94,0.2);
+      border-left:3px solid var(--green);
+      padding:2rem;position:relative;overflow:hidden;
+    }
+    .circuit-card::before{
+      content:'';position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(34,197,94,0.04) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(34,197,94,0.04) 1px,transparent 1px);
+      background-size:20px 20px;
+    }
+    .cc-label{
+      font-family:'Montserrat',sans-serif;
+      font-size:9px;letter-spacing:4px;color:var(--green);
+      text-transform:uppercase;margin-bottom:1.2rem;
+      position:relative;z-index:1;
+    }
+
+    /* ══ TICKER ══ */
+    .ticker-bar{
+      background:var(--green);overflow:hidden;padding:11px 0;
+    }
+    .ticker-track{
+      display:flex;gap:3rem;
+      animation:ticker 30s linear infinite;white-space:nowrap;
+    }
+    .t-item{
+      font-family:'Montserrat',sans-serif;
+      font-size:11px;letter-spacing:3px;color:var(--navy-deep);
+      text-transform:uppercase;font-weight:700;
+      display:flex;align-items:center;gap:10px;flex-shrink:0;
+    }
+    .t-item::before{content:'⚡';font-size:9px;}
+    @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+    /* ══ EPC LIFECYCLE ══ */
+    #epc{
+      background:var(--navy-mid);
+      padding:5rem 0;
+    }
+    .epc-flow{
+      display:flex;align-items:stretch;
+      margin-top:3rem;gap:0;
+      overflow-x:auto;
+    }
+    .epc-step{
+      flex:1;min-width:130px;
+      background:rgba(11,29,51,0.6);
+      border:1px solid rgba(34,197,94,0.12);
+      border-right:none;
+      padding:1.5rem 1rem;
+      text-align:center;
+      position:relative;
+      transition:all .3s;
+      display:flex;flex-direction:column;align-items:center;gap:.75rem;
+    }
+    .epc-step:last-child{border-right:1px solid rgba(34,197,94,0.12);}
+    .epc-step:hover{background:rgba(34,197,94,0.06);border-color:rgba(34,197,94,0.3);}
+    .epc-step::after{
+      content:'→';
+      position:absolute;right:-14px;top:50%;transform:translateY(-50%);
+      color:var(--green);font-size:16px;z-index:2;
+      background:var(--navy-mid);padding:0 2px;
+    }
+    .epc-step:last-child::after{display:none;}
+    .epc-num{
+      font-family:'Montserrat',sans-serif;
+      font-size:10px;font-weight:700;letter-spacing:2px;
+      color:var(--green);
+    }
+    .epc-icon{font-size:28px;}
+    .epc-title{
+      font-family:'Montserrat',sans-serif;
+      font-size:12px;font-weight:700;color:var(--white);
+      letter-spacing:.5px;
+    }
+    .epc-desc{font-size:11px;color:var(--dim);line-height:1.5;}
+    .epc-active{
+      background:linear-gradient(180deg,rgba(34,197,94,0.1) 0%,rgba(34,197,94,0.03) 100%) !important;
+      border-color:rgba(34,197,94,0.4) !important;
+    }
+    .epc-active .epc-title{color:var(--green);}
+
+    /* ══ SERVICES ══ */
+    #services{
+      background:var(--navy-deep);
+      padding:5rem 0;
+    }
+    .services-tabs{
+      display:flex;gap:.5rem;margin:2rem 0;flex-wrap:wrap;
+    }
+    .stab{
+      font-family:'Montserrat',sans-serif;
+      font-size:10px;letter-spacing:2px;text-transform:uppercase;
+      padding:8px 20px;background:transparent;
+      border:1px solid rgba(143,168,191,0.25);color:var(--steel-light);
+      cursor:pointer;transition:all .2s;font-weight:600;
+    }
+    .stab:hover,.stab.active{
+      border-color:var(--green);color:var(--green);
+      background:var(--green-glow);
+    }
+    .services-panels>div{display:none;}
+    .services-panels>div.active{display:block;}
+    .svc-grid{
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:1.5rem;margin-top:1.5rem;
+    }
+    .svc-card{
+      background:rgba(11,29,51,0.5);
+      border:1px solid rgba(61,79,99,0.4);
+      padding:1.75rem;transition:all .3s;
+      position:relative;overflow:hidden;
+    }
+    .svc-card::after{
+      content:'';position:absolute;
+      bottom:0;left:0;right:0;height:2px;
+      background:var(--green);transform:scaleX(0);
+      transition:transform .3s;transform-origin:left;
+    }
+    .svc-card:hover{border-color:rgba(34,197,94,0.3);transform:translateY(-3px);}
+    .svc-card:hover::after{transform:scaleX(1);}
+    .svc-icon{font-size:26px;margin-bottom:1rem;}
+    .svc-title{
+      font-family:'Montserrat',sans-serif;
+      font-size:14px;font-weight:700;color:var(--white);margin-bottom:.5rem;
+    }
+    .svc-list{
+      list-style:none;display:flex;flex-direction:column;gap:5px;
+    }
+    .svc-list li{
+      font-size:12px;color:var(--dim);
+      display:flex;align-items:flex-start;gap:6px;line-height:1.5;
+    }
+    .svc-list li::before{content:'—';color:var(--green);flex-shrink:0;font-size:10px;margin-top:2px;}
+    .svc-panel-hero{
+      background:rgba(11,29,51,0.7);
+      border:1px solid rgba(34,197,94,0.15);
+      border-left:3px solid var(--green);
+      padding:2rem;margin-bottom:1.5rem;
+      position:relative;overflow:hidden;
+    }
+    .svc-panel-hero p{font-size:14px;color:var(--dim);line-height:1.8;margin-top:.5rem;}
+
+    /* ══ CAPABILITY MATRIX ══ */
+    #matrix{
+      background:var(--navy-mid);
+      padding:5rem 0;
+    }
+    .matrix-table{
+      width:100%;border-collapse:collapse;margin-top:2.5rem;
+      font-size:13px;
+    }
+    .matrix-table th{
+      font-family:'Montserrat',sans-serif;
+      font-size:10px;letter-spacing:3px;text-transform:uppercase;
+      padding:14px 16px;
+      background:rgba(34,197,94,0.1);
+      border:1px solid rgba(34,197,94,0.2);
+      color:var(--green);font-weight:700;text-align:left;
+    }
+    .matrix-table td{
+      padding:14px 16px;
+      border:1px solid rgba(61,79,99,0.3);
+      color:var(--dim);line-height:1.6;
+      vertical-align:top;
+    }
+    .matrix-table tr:hover td{background:rgba(34,197,94,0.03);}
+    .matrix-table td:first-child{
+      font-family:'Montserrat',sans-serif;
+      font-weight:700;color:var(--white);font-size:12px;
+      white-space:nowrap;
+    }
+    .mtag{
+      display:inline-block;
+      font-size:9px;letter-spacing:2px;text-transform:uppercase;
+      padding:2px 8px;margin:2px;
+      background:var(--green-glow);
+      border:1px solid rgba(34,197,94,0.25);
+      color:var(--green);font-weight:600;
+    }
+
+    /* ══ VALUES ══ */
+    #values{
+      background:var(--navy-deep);
+      padding:5rem 0;
+    }
+    .values-grid{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+      gap:1.2rem;margin-top:2.5rem;
+    }
+    .val-card{
+      padding:1.5rem;
+      border:1px solid rgba(61,79,99,0.3);
+      position:relative;transition:all .3s;
+      background:rgba(11,29,51,0.4);
+    }
+    .val-card:hover{
+      border-color:rgba(34,197,94,0.3);
+      background:rgba(34,197,94,0.04);
+    }
+    .val-num{
+      font-family:'Montserrat',sans-serif;
+      font-size:40px;font-weight:900;
+      color:rgba(34,197,94,0.15);
+      line-height:1;position:absolute;top:12px;right:16px;
+    }
+    .val-icon{font-size:22px;margin-bottom:.75rem;}
+    .val-title{
+      font-family:'Montserrat',sans-serif;
+      font-size:13px;font-weight:700;color:var(--white);margin-bottom:.4rem;
+    }
+    .val-desc{font-size:12px;color:var(--dim);line-height:1.6;}
+
+    /* ══ VISION/MISSION ══ */
+    #vision{
+      background:linear-gradient(135deg,var(--navy-mid) 0%,#071f14 100%);
+      padding:5rem 0;position:relative;overflow:hidden;
+    }
+    .vm-grid{
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:2rem;margin-top:2.5rem;
+    }
+    .vm-card{
+      background:rgba(7,21,37,0.7);
+      border:1px solid rgba(34,197,94,0.15);
+      padding:2.5rem;position:relative;
+      overflow:hidden;
+    }
+    .vm-card::before{
+      content:'';position:absolute;
+      top:0;left:0;right:0;height:3px;
+      background:var(--green);
+    }
+    .corner-m{position:absolute;width:16px;height:16px;border-color:var(--green);border-style:solid;border-width:0;}
+    .corner-m.tl{top:-1px;left:-1px;border-top-width:2px;border-left-width:2px;}
+    .corner-m.tr{top:-1px;right:-1px;border-top-width:2px;border-right-width:2px;}
+    .corner-m.bl{bottom:-1px;left:-1px;border-bottom-width:2px;border-left-width:2px;}
+    .corner-m.br{bottom:-1px;right:-1px;border-bottom-width:2px;border-right-width:2px;}
+    .vm-heading{
+      font-family:'Montserrat',sans-serif;
+      font-size:11px;letter-spacing:4px;color:var(--green);
+      text-transform:uppercase;margin-bottom:1rem;
+      display:flex;align-items:center;gap:8px;
+    }
+    .vm-heading::before{content:'◆';font-size:8px;}
+    .vm-text{font-size:14px;color:var(--steel-pale);line-height:1.85;font-weight:300;}
+
+    /* ══ QHSE ══ */
+    #qhse{
+      background:var(--navy-mid);
+      padding:5rem 0;
+    }
+    .qhse-grid{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+      gap:1.5rem;margin-top:2.5rem;
+    }
+    .qhse-card{
+      padding:2rem;
+      background:rgba(7,21,37,0.6);
+      border:1px solid rgba(61,79,99,0.3);
+      transition:all .3s;
+    }
+    .qhse-card:hover{border-color:rgba(34,197,94,0.35);transform:translateY(-3px);}
+    .qhse-icon{
+      width:50px;height:50px;
+      border:1px solid rgba(34,197,94,0.3);
+      background:var(--green-glow);
+      display:flex;align-items:center;justify-content:center;
+      font-size:20px;margin-bottom:1.2rem;
+    }
+    .qhse-title{
+      font-family:'Montserrat',sans-serif;
+      font-size:14px;font-weight:700;color:var(--white);margin-bottom:.5rem;
+    }
+    .qhse-desc{font-size:13px;color:var(--dim);line-height:1.7;}
+
+    /* ══ CLIENTS ══ */
+    #clients{
+      background:var(--navy-deep);
+      padding:5rem 0;
+    }
+    .clients-grid{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+      gap:1rem;margin-top:2.5rem;
+    }
+    .client-card{
+      border:1px solid rgba(61,79,99,0.3);
+      padding:1.5rem;text-align:center;
+      transition:all .3s;
+      display:flex;flex-direction:column;align-items:center;gap:.75rem;
+    }
+    .client-card:hover{border-color:rgba(34,197,94,0.3);background:var(--green-glow);}
+    .client-icon{font-size:30px;}
+    .client-name{
+      font-family:'Montserrat',sans-serif;
+      font-size:12px;font-weight:600;color:var(--white);
+    }
+    .client-type{font-size:11px;color:var(--dim);}
+
+    /* ══ CONTACT ══ */
+    #contact{
+      background:linear-gradient(135deg,#071525 0%,#071f14 100%);
+      padding:5rem 0;
+    }
+    .contact-grid{
+      display:grid;grid-template-columns:1fr 1.4fr;
+      gap:4rem;margin-top:2.5rem;align-items:start;
+    }
+    .cinfo{display:flex;flex-direction:column;gap:1.8rem;}
+    .ci-item{display:flex;gap:1rem;align-items:flex-start;}
+    .ci-icon{
+      width:44px;height:44px;flex-shrink:0;
+      border:1px solid rgba(34,197,94,0.3);
+      background:var(--green-glow);
+      display:flex;align-items:center;justify-content:center;font-size:17px;
+    }
+    .ci-item h4{
+      font-family:'Montserrat',sans-serif;
+      font-size:10px;letter-spacing:3px;color:var(--green);
+      text-transform:uppercase;margin-bottom:4px;
+    }
+    .ci-item p{font-size:13px;color:var(--dim);line-height:1.6;}
+    .cert-row{
+      display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem;
+      padding-top:2rem;border-top:1px solid rgba(34,197,94,0.12);
+    }
+    .cert-badge{
+      border:1px solid rgba(34,197,94,0.25);
+      padding:8px 16px;
+      font-family:'Montserrat',sans-serif;
+      font-size:10px;letter-spacing:2px;color:var(--green);
+      text-transform:uppercase;font-weight:600;
+      display:flex;align-items:center;gap:6px;
+    }
+    .cert-badge::before{content:'✓';font-weight:900;}
+    .contact-form{display:flex;flex-direction:column;gap:1rem;}
+    .fr{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+    .fg{display:flex;flex-direction:column;gap:5px;}
+    .fg label{
+      font-family:'Montserrat',sans-serif;
+      font-size:9px;letter-spacing:3px;color:var(--green);text-transform:uppercase;font-weight:600;
+    }
+    .fg input,.fg select,.fg textarea{
+      background:rgba(11,29,51,0.7);
+      border:1px solid rgba(61,79,99,0.4);
+      color:var(--white);padding:11px 15px;
+      font-family:'Open Sans',sans-serif;font-size:13px;
+      outline:none;transition:border-color .2s;
+    }
+    .fg input:focus,.fg select:focus,.fg textarea:focus{
+      border-color:var(--green);background:rgba(11,29,51,0.95);
+    }
+    .fg textarea{height:110px;resize:vertical;}
+    .fg select option{background:var(--navy-mid);}
+
+    /* ══ FOOTER ══ */
+    footer{
+      background:#040e1a;
+      border-top:1px solid rgba(34,197,94,0.12);
+      padding:3rem 2rem 1.5rem;
+    }
+    .foot-inner{
+      max-width:1200px;margin:0 auto;
+      display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;
+    }
+    .foot-logo-name{
+      font-family:'Montserrat',sans-serif;
+      font-size:22px;font-weight:900;letter-spacing:2px;
+    }
+    .foot-logo-tag{
+      font-size:9px;letter-spacing:4px;color:var(--green);
+      text-transform:uppercase;margin-top:2px;
+    }
+    .foot-desc{font-size:12px;color:var(--dim);line-height:1.7;margin-top:1rem;max-width:260px;}
+    .foot-col h5{
+      font-family:'Montserrat',sans-serif;
+      font-size:9px;letter-spacing:4px;color:var(--green);
+      text-transform:uppercase;margin-bottom:1.2rem;font-weight:700;
+    }
+    .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+    .foot-col a{font-size:12px;color:var(--dim);text-decoration:none;transition:color .2s;}
+    .foot-col a:hover{color:var(--white);}
+    .foot-bottom{
+      max-width:1200px;margin:2rem auto 0;
+      padding-top:1.5rem;border-top:1px solid rgba(61,79,99,0.2);
+      display:flex;justify-content:space-between;align-items:center;
+      font-size:11px;color:var(--dim);flex-wrap:wrap;gap:1rem;
+    }
+
+    /* ══ ANIMATIONS ══ */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    @keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.3);}50%{box-shadow:0 0 0 10px rgba(34,197,94,0);}}
+    .fu{animation:fadeUp .7s ease forwards;opacity:0;}
+    .d1{animation-delay:.1s;}.d2{animation-delay:.2s;}.d3{animation-delay:.3s;}.d4{animation-delay:.4s;}
+
+    /* ══ MOBILE ══ */
+    @media(max-width:900px){
+      .hero-inner,.vm-grid,.contact-grid{grid-template-columns:1fr;gap:2rem;}
+      .svc-grid{grid-template-columns:1fr;}
+      .foot-inner{grid-template-columns:1fr 1fr;gap:2rem;}
+      .nav-links{display:none;}
+      .hamburger{display:flex;}
+      .matrix-table{font-size:11px;}
+    }
+    @media(max-width:600px){
+      .fr{grid-template-columns:1fr;}
+      .foot-inner{grid-template-columns:1fr;}
+      .hero-stats{flex-wrap:wrap;gap:1.5rem;}
+      .epc-flow{flex-direction:column;}
+      .epc-step::after{content:'↓';right:50%;top:auto;bottom:-14px;transform:translateX(50%);}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav id="topnav">
+  <a class="nav-logo" href="#">
+    <div class="logo-bolt"></div>
+    <div class="logo-text-wrap">
+      <span>VOLTIX</span>
+      <span>Company Ltd</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#epc">Services</a></li>
+    <li><a href="#matrix">Capabilities</a></li>
+    <li><a href="#values">About</a></li>
+    <li><a href="#qhse">QHSE</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <button class="hamburger" id="hbg" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mob-menu" style="display:none;position:fixed;top:68px;left:0;right:0;z-index:199;background:rgba(4,14,26,0.98);border-bottom:1px solid rgba(34,197,94,0.2);padding:1.5rem 2rem;flex-direction:column;gap:1.5rem;">
+  <a href="#epc" style="color:var(--white);text-decoration:none;font-family:'Montserrat',sans-serif;letter-spacing:3px;text-transform:uppercase;font-size:13px;" onclick="document.getElementById('mob-menu').style.display='none'">Services</a>
+  <a href="#matrix" style="color:var(--white);text-decoration:none;font-family:'Montserrat',sans-serif;letter-spacing:3px;text-transform:uppercase;font-size:13px;" onclick="document.getElementById('mob-menu').style.display='none'">Capabilities</a>
+  <a href="#values" style="color:var(--white);text-decoration:none;font-family:'Montserrat',sans-serif;letter-spacing:3px;text-transform:uppercase;font-size:13px;" onclick="document.getElementById('mob-menu').style.display='none'">About</a>
+  <a href="#qhse" style="color:var(--white);text-decoration:none;font-family:'Montserrat',sans-serif;letter-spacing:3px;text-transform:uppercase;font-size:13px;" onclick="document.getElementById('mob-menu').style.display='none'">QHSE</a>
+  <a href="#contact" style="color:var(--green);text-decoration:none;font-family:'Montserrat',sans-serif;letter-spacing:3px;text-transform:uppercase;font-size:13px;font-weight:700;" onclick="document.getElementById('mob-menu').style.display='none'">Contact</a>
+</div>
+
+<!-- ══ HERO ══ -->
+<div id="hero" class="eng-grid section-wrap">
+  <!-- Electrical schematic SVG background -->
+  <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.08;" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- Circuit traces -->
+    <g stroke="#22c55e" fill="none" stroke-width="1">
+      <path d="M0,200 H200 V350 H400 V200 H600"/>
+      <path d="M600,200 H800 V100 H1000 V200 H1200 V300 H1440"/>
+      <path d="M0,500 H150 V400 H350 V500 H550 V600 H750 V500 H950 V400 H1150 V500 H1440"/>
+      <path d="M0,700 H100 V800 H300 V700 H500 V750 H700 V700 H900 V800 H1100 V700 H1440"/>
+      <!-- Vertical traces -->
+      <line x1="200" y1="200" x2="200" y2="500"/>
+      <line x1="550" y1="200" x2="550" y2="500"/>
+      <line x1="950" y1="200" x2="950" y2="500"/>
+    </g>
+    <!-- Resistors -->
+    <g stroke="#22c55e" fill="none" stroke-width="1">
+      <rect x="280" y="190" width="40" height="20"/>
+      <rect x="680" y="90" width="40" height="20"/>
+      <rect x="1080" y="190" width="40" height="20"/>
+      <rect x="430" y="490" width="40" height="20"/>
+      <rect x="830" y="390" width="40" height="20"/>
+    </g>
+    <!-- Capacitors -->
+    <g stroke="#22c55e" fill="none" stroke-width="1.2">
+      <line x1="480" y1="185" x2="480" y2="215"/>
+      <line x1="490" y1="185" x2="490" y2="215"/>
+      <line x1="880" y1="285" x2="880" y2="315"/>
+      <line x1="890" y1="285" x2="890" y2="315"/>
+    </g>
+    <!-- Inductors (coils) -->
+    <g stroke="#22c55e" fill="none" stroke-width="1">
+      <path d="M140,195 Q150,180 160,195 Q170,180 180,195 Q190,180 200,195"/>
+      <path d="M740,95 Q750,80 760,95 Q770,80 780,95 Q790,80 800,95"/>
+    </g>
+    <!-- Node dots -->
+    <g fill="#22c55e">
+      <circle cx="200" cy="200" r="4"/>
+      <circle cx="400" cy="200" r="4"/>
+      <circle cx="600" cy="200" r="4"/>
+      <circle cx="800" cy="200" r="4"/>
+      <circle cx="1000" cy="200" r="4"/>
+      <circle cx="200" cy="500" r="4"/>
+      <circle cx="550" cy="500" r="4"/>
+      <circle cx="950" cy="500" r="4"/>
+      <circle cx="750" cy="700" r="4"/>
+    </g>
+    <!-- Power symbols -->
+    <g stroke="#22c55e" fill="none" stroke-width="1.2">
+      <line x1="80" y1="160" x2="80" y2="240"/>
+      <line x1="60" y1="170" x2="100" y2="170"/>
+      <line x1="65" y1="185" x2="95" y2="185"/>
+      <line x1="70" y1="200" x2="90" y2="200"/>
+      <line x1="73" y1="215" x2="87" y2="215"/>
+      <line x1="77" y1="230" x2="83" y2="230"/>
+    </g>
+    <!-- Transformer symbol -->
+    <g stroke="#22c55e" fill="none" stroke-width="1">
+      <path d="M1300,100 Q1310,85 1320,100 Q1330,85 1340,100 Q1350,85 1360,100"/>
+      <path d="M1300,110 Q1310,95 1320,110 Q1330,95 1340,110 Q1350,95 1360,110"/>
+      <line x1="1280" y1="105" x2="1300" y2="105"/>
+      <line x1="1360" y1="105" x2="1380" y2="105"/>
+    </g>
+    <!-- Waveform line -->
+    <g stroke="#22c55e" fill="none" stroke-width="1.2" opacity="0.6">
+      <path d="M900,650 Q920,620 940,650 Q960,680 980,650 Q1000,620 1020,650 Q1040,680 1060,650 Q1080,620 1100,650 Q1120,680 1140,650 Q1160,620 1180,650"/>
+    </g>
+    <!-- Compass Rose -->
+    <g stroke="#22c55e" fill="none" stroke-width="0.8" transform="translate(1380,820)">
+      <circle cx="0" cy="0" r="35"/>
+      <line x1="0" y1="-40" x2="0" y2="40"/>
+      <line x1="-40" y1="0" x2="40" y2="0"/>
+      <polygon points="0,-34 -5,-12 0,-18 5,-12" fill="#22c55e"/>
+      <text x="0" y="-42" font-size="9" fill="#22c55e" text-anchor="middle" font-family="monospace">N</text>
+    </g>
+    <!-- Grid ref labels -->
+    <g fill="#22c55e" font-family="monospace" font-size="8" opacity="0.5">
+      <text x="10" y="20">A1</text><text x="370" y="20">B1</text><text x="730" y="20">C1</text><text x="1090" y="20">D1</text>
+      <text x="10" y="320">A2</text><text x="370" y="320">B2</text><text x="730" y="320">C2</text>
+      <text x="10" y="620">A3</text><text x="370" y="620">B3</text><text x="730" y="620">C3</text>
+    </g>
+  </svg>
+
+  <div class="inner">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow fu">Multidisciplinary Engineering Services</div>
+        <h1 class="fu d1">
+          VOLTIX
+          <span class="accent">COMPANY LTD</span>
+          <span class="sub-h">Engineering Certainty. Delivered.</span>
+        </h1>
+        <p class="hero-desc fu d2">
+          End-to-end engineering solutions across Civil, Mechanical, and Electrical disciplines — from concept development through EPC delivery, commissioning, and project management. Operating to international best practice standards.
+        </p>
+        <div class="hero-btns fu d3">
+          <a href="#services" class="btn-p">Our Services</a>
+          <a href="#contact" class="btn-o">Request Consultation</a>
+        </div>
+        <div class="hero-stats fu d4">
+          <div><div class="hstat-num">3</div><div class="hstat-lbl">Engineering<br>Disciplines</div></div>
+          <div><div class="hstat-num">EPC</div><div class="hstat-lbl">Full Lifecycle<br>Delivery</div></div>
+          <div><div class="hstat-num">ISO</div><div class="hstat-lbl">International<br>Standards</div></div>
+          <div><div class="hstat-num">0</div><div class="hstat-lbl">Harm<br>Policy</div></div>
+        </div>
+      </div>
+
+      <div class="hero-panel fu d2">
+        <div class="circuit-card">
+          <div class="corner-m tl"></div><div class="corner-m tr"></div>
+          <div class="corner-m bl"></div><div class="corner-m br"></div>
+          <div class="cc-label">Service Lifecycle Overview</div>
+          <!-- Lifecycle mini diagram -->
+          <svg viewBox="0 0 260 200" style="width:100%;position:relative;z-index:1;" xmlns="http://www.w3.org/2000/svg">
+            <!-- Horizontal pipeline -->
+            <line x1="10" y1="100" x2="250" y2="100" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <!-- Phase nodes -->
+            <g fill="#0b1d33" stroke="#22c55e" stroke-width="1.5">
+              <circle cx="30" cy="100" r="12"/>
+              <circle cx="75" cy="100" r="12"/>
+              <circle cx="120" cy="100" r="12"/>
+              <circle cx="165" cy="100" r="12"/>
+              <circle cx="210" cy="100" r="12"/>
+            </g>
+            <!-- Phase icons text -->
+            <g fill="#22c55e" font-size="9" text-anchor="middle" font-family="monospace">
+              <text x="30" y="103">A</text>
+              <text x="75" y="103">D</text>
+              <text x="120" y="103">E</text>
+              <text x="165" y="103">C</text>
+              <text x="210" y="103">PM</text>
+            </g>
+            <!-- Labels below -->
+            <g fill="#8fa8bf" font-size="7" text-anchor="middle" font-family="monospace">
+              <text x="30" y="122">Advisory</text>
+              <text x="75" y="122">Design</text>
+              <text x="120" y="122">EPC</text>
+              <text x="165" y="122">Commiss.</text>
+              <text x="210" y="122">PM</text>
+            </g>
+            <!-- Vertical drop lines -->
+            <g stroke="#22c55e" stroke-width="0.6" opacity="0.4">
+              <line x1="30" y1="112" x2="30" y2="118"/>
+              <line x1="75" y1="112" x2="75" y2="118"/>
+              <line x1="120" y1="112" x2="120" y2="118"/>
+              <line x1="165" y1="112" x2="165" y2="118"/>
+              <line x1="210" y1="112" x2="210" y2="118"/>
+            </g>
+            <!-- Active pulse on EPC node -->
+            <circle cx="120" cy="100" r="20" fill="none" stroke="#22c55e" stroke-width="0.8" opacity="0.4">
+              <animate attributeName="r" values="12;22;12" dur="2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Discipline tags -->
+            <g font-size="7" font-family="monospace">
+              <rect x="5" y="40" width="55" height="14" fill="rgba(34,197,94,0.1)" stroke="#22c55e" stroke-width="0.6"/>
+              <text x="32" y="50" fill="#22c55e" text-anchor="middle">ELECTRICAL</text>
+              <rect x="95" y="40" width="50" height="14" fill="rgba(34,197,94,0.1)" stroke="#22c55e" stroke-width="0.6"/>
+              <text x="120" y="50" fill="#22c55e" text-anchor="middle">MECH.</text>
+              <rect x="190" y="40" width="45" height="14" fill="rgba(34,197,94,0.1)" stroke="#22c55e" stroke-width="0.6"/>
+              <text x="212" y="50" fill="#22c55e" text-anchor="middle">CIVIL</text>
+            </g>
+            <!-- Title -->
+            <text x="130" y="15" font-size="8" fill="#22c55e" text-anchor="middle" font-family="monospace" letter-spacing="2">VOLTIX LIFECYCLE MODEL</text>
+            <!-- Dimension line bottom -->
+            <line x1="10" y1="165" x2="250" y2="165" stroke="#22c55e" stroke-width="0.5"/>
+            <line x1="10" y1="160" x2="10" y2="170" stroke="#22c55e" stroke-width="0.5"/>
+            <line x1="250" y1="160" x2="250" y2="170" stroke="#22c55e" stroke-width="0.5"/>
+            <text x="130" y="178" font-size="7" fill="#8fa8bf" text-anchor="middle" font-family="monospace">CONCEPT → HANDOVER</text>
+          </svg>
+          <!-- Disciplines row -->
+          <div style="display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap;position:relative;z-index:1;">
+            <div style="font-size:11px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);padding:4px 10px;color:#22c55e;font-family:'Montserrat',sans-serif;letter-spacing:1px;">⚡ Electrical</div>
+            <div style="font-size:11px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);padding:4px 10px;color:#22c55e;font-family:'Montserrat',sans-serif;letter-spacing:1px;">⚙️ Mechanical</div>
+            <div style="font-size:11px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);padding:4px 10px;color:#22c55e;font-family:'Montserrat',sans-serif;letter-spacing:1px;">🏗️ Civil</div>
+          </div>
+        </div>
+        <!-- HQ tag -->
+        <div style="margin-top:1rem;padding:1rem 1.25rem;border:1px solid rgba(34,197,94,0.15);display:flex;gap:.75rem;align-items:center;">
+          <span style="font-size:18px;">📍</span>
+          <div>
+            <div style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:3px;color:var(--green);text-transform:uppercase;">Head Office</div>
+            <div style="font-size:12px;color:var(--steel-pale);">No. 2 Madallah Crescent, Kaduna, Nigeria</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TICKER ══ -->
+<div class="ticker-bar">
+  <div class="ticker-track">
+    <span class="t-item">Engineering Consulting</span>
+    <span class="t-item">Design Services</span>
+    <span class="t-item">EPC Delivery</span>
+    <span class="t-item">Commissioning</span>
+    <span class="t-item">Project Management</span>
+    <span class="t-item">Electrical Engineering</span>
+    <span class="t-item">Mechanical Engineering</span>
+    <span class="t-item">Civil Engineering</span>
+    <span class="t-item">QHSE Compliance</span>
+    <span class="t-item">International Standards</span>
+    <span class="t-item">Engineering Consulting</span>
+    <span class="t-item">Design Services</span>
+    <span class="t-item">EPC Delivery</span>
+    <span class="t-item">Commissioning</span>
+    <span class="t-item">Project Management</span>
+    <span class="t-item">Electrical Engineering</span>
+    <span class="t-item">Mechanical Engineering</span>
+    <span class="t-item">Civil Engineering</span>
+    <span class="t-item">QHSE Compliance</span>
+    <span class="t-item">International Standards</span>
+  </div>
+</div>
+
+<!-- ══ EPC LIFECYCLE ══ -->
+<div class="section-wrap eng-grid" id="epc" style="background:var(--navy-mid);">
+  <!-- Power network SVG -->
+  <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.06;" viewBox="0 0 1440 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#22c55e" fill="none" stroke-width="1">
+      <!-- Transmission lines -->
+      <line x1="0" y1="100" x2="1440" y2="100"/>
+      <line x1="0" y1="400" x2="1440" y2="400"/>
+      <!-- Towers -->
+      <g transform="translate(100,50)"><line x1="0" y1="50" x2="30" y2="0"/><line x1="60" y1="50" x2="30" y2="0"/><line x1="0" y1="50" x2="60" y2="50"/><line x1="30" y1="0" x2="30" y2="100"/></g>
+      <g transform="translate(400,50)"><line x1="0" y1="50" x2="30" y2="0"/><line x1="60" y1="50" x2="30" y2="0"/><line x1="0" y1="50" x2="60" y2="50"/><line x1="30" y1="0" x2="30" y2="100"/></g>
+      <g transform="translate(700,50)"><line x1="0" y1="50" x2="30" y2="0"/><line x1="60" y1="50" x2="30" y2="0"/><line x1="0" y1="50" x2="60" y2="50"/><line x1="30" y1="0" x2="30" y2="100"/></g>
+      <g transform="translate(1000,50)"><line x1="0" y1="50" x2="30" y2="0"/><line x1="60" y1="50" x2="30" y2="0"/><line x1="0" y1="50" x2="60" y2="50"/><line x1="30" y1="0" x2="30" y2="100"/></g>
+      <g transform="translate(1300,50)"><line x1="0" y1="50" x2="30" y2="0"/><line x1="60" y1="50" x2="30" y2="0"/><line x1="0" y1="50" x2="60" y2="50"/><line x1="30" y1="0" x2="30" y2="100"/></g>
+    </g>
+  </svg>
+  <div class="inner" style="padding-top:5rem;padding-bottom:5rem;position:relative;z-index:1;">
+    <div class="sec-label">Integrated Delivery Model</div>
+    <h2>EPC <span>Lifecycle</span> Framework</h2>
+    <p class="sub">Voltix delivers services through an integrated lifecycle model — from advisory through handover — with full scope, cost, schedule, and quality control at every stage.</p>
+    <div class="epc-flow">
+      <div class="epc-step">
+        <div class="epc-num">01</div>
+        <div class="epc-icon">🔍</div>
+        <div class="epc-title">Advisory &<br>Feasibility</div>
+        <div class="epc-desc">Concept development, feasibility studies, risk analysis</div>
+      </div>
+      <div class="epc-step">
+        <div class="epc-num">02</div>
+        <div class="epc-icon">📐</div>
+        <div class="epc-title">Engineering<br>Design</div>
+        <div class="epc-desc">Detailed design, modelling, simulation, specifications</div>
+      </div>
+      <div class="epc-step epc-active">
+        <div class="epc-num">03</div>
+        <div class="epc-icon">🏗️</div>
+        <div class="epc-title">EPC<br>Delivery</div>
+        <div class="epc-desc">Procurement, construction, scope & cost control</div>
+      </div>
+      <div class="epc-step">
+        <div class="epc-num">04</div>
+        <div class="epc-icon">⚡</div>
+        <div class="epc-title">Commissioning<br>& Testing</div>
+        <div class="epc-desc">Systematic testing, performance verification, readiness</div>
+      </div>
+      <div class="epc-step">
+        <div class="epc-num">05</div>
+        <div class="epc-icon">📊</div>
+        <div class="epc-title">Project<br>Management</div>
+        <div class="epc-desc">Controls, reporting, risk management, handover</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SERVICES ══ -->
+<div class="section-wrap eng-grid" id="services">
+  <!-- CAD-style schematic background -->
+  <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.055;" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- Industrial plant schematic -->
+    <g stroke="#22c55e" fill="none" stroke-width="0.9">
+      <!-- Tanks/vessels -->
+      <rect x="50" y="200" width="80" height="120" rx="5"/>
+      <ellipse cx="90" cy="200" rx="40" ry="12"/>
+      <ellipse cx="90" cy="320" rx="40" ry="12"/>
+      <rect x="200" y="150" width="80" height="150" rx="5"/>
+      <ellipse cx="240" cy="150" rx="40" ry="12"/>
+      <!-- Pipes -->
+      <line x1="130" y1="260" x2="200" y2="260"/>
+      <line x1="280" y1="225" x2="380" y2="225"/>
+      <line x1="380" y1="225" x2="380" y2="350"/>
+      <line x1="380" y1="350" x2="500" y2="350"/>
+      <!-- Pump symbol -->
+      <circle cx="340" cy="260" r="20"/>
+      <line x1="320" y1="260" x2="360" y2="260"/>
+      <polygon points="340,245 355,260 340,275" fill="rgba(34,197,94,0.2)"/>
+      <!-- Valve symbols -->
+      <polygon points="450,340 470,350 450,360" fill="none" stroke="#22c55e" stroke-width="1"/>
+      <polygon points="470,340 450,350 470,360" fill="none" stroke="#22c55e" stroke-width="1"/>
+    </g>
+    <!-- Floor plan right -->
+    <g stroke="#22c55e" fill="none" stroke-width="0.8" transform="translate(900,100)">
+      <rect x="0" y="0" width="400" height="300"/>
+      <line x1="0" y1="150" x2="400" y2="150"/>
+      <line x1="200" y1="0" x2="200" y2="300"/>
+      <rect x="20" y="20" width="80" height="60"/>
+      <rect x="120" y="20" width="60" height="60"/>
+      <rect x="220" y="20" width="80" height="60"/>
+      <rect x="320" y="20" width="60" height="60"/>
+      <rect x="20" y="170" width="160" height="110"/>
+      <rect x="220" y="170" width="160" height="110"/>
+      <!-- Door marks -->
+      <path d="M20 100 Q50 70 80 100" stroke-width="0.6"/>
+      <path d="M220 100 Q250 70 280 100" stroke-width="0.6"/>
+    </g>
+  </svg>
+
+  <div class="inner" style="padding-top:5rem;padding-bottom:5rem;position:relative;z-index:1;">
+    <div class="sec-label">Engineering Practices</div>
+    <h2>Service <span>Architecture</span></h2>
+    <p class="sub">Comprehensive engineering services across three core disciplines, each operating within our integrated EPC delivery framework.</p>
+
+    <div class="services-tabs">
+      <button class="stab active" onclick="showPanel('electrical',this)">⚡ Electrical</button>
+      <button class="stab" onclick="showPanel('mechanical',this)">⚙️ Mechanical</button>
+      <button class="stab" onclick="showPanel('civil',this)">🏗️ Civil</button>
+      <button class="stab" onclick="showPanel('epc2',this)">🔧 EPC & Construction</button>
+      <button class="stab" onclick="showPanel('pm',this)">📊 Project Management</button>
+    </div>
+
+    <div class="services-panels">
+      <!-- ELECTRICAL -->
+      <div id="panel-electrical" class="active">
+        <div class="svc-panel-hero">
+          <div class="sec-label">Electrical Engineering Practice</div>
+          <p>Comprehensive services across renewable and fossil-based energy systems, automation, and metering — supporting a balanced energy mix strategy and digital energy transition.</p>
+        </div>
+        <div class="svc-grid">
+          <div class="svc-card">
+            <div class="svc-icon"></div>
+            <div class="svc-title">Energy Systems</div>
+            <ul class="svc-list">
+              <li>Energy audits and efficiency studies</li>
+              <li>Renewable energy and hybrid systems</li>
+              <li>Fossil and conventional power integration</li>
+              <li>Power system modelling and simulation</li>
+            </ul>
+          </div>
+          <div class="svc-card">
+            <div class="svc-icon"></div>
+            <div class="svc-title">Network & Design</div>
+            <ul class="svc-list">
+              <li>Electrical network design and analysis</li>
+              <li>Power system studies</li>
+              <li>Automation and control systems</li>
+              <li>Testing, commissioning, and validation</li>
+            </ul>
+          </div>
+          <div class="svc-card">
+            <div class="svc-icon"></div>
+            <div class="svc-title">Metering & IoT</div>
+            <ul class="svc-list">
+              <li>Energy and IoT metering</li>
+              <li>Commercial and revenue metering</li>
+              <li>Smart grid integration</li>
+              <li>Remote monitoring systems</li>
+            </ul>
+          </div>
+          <div class="svc-card">
+            <div class="svc-icon"></div>
+            <div class="svc-title">Renewables</div>
+            <ul class="svc-list">
+              <li>Solar PV system design</li>
+              <li>Wind energy integration</li>
+              <li>Hybrid off-grid solutions</li>
+              <li>Battery energy storage systems</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- MECHANICAL -->
+      <div id="panel-mechanical">
+        <div class="svc-panel-hero">
+          <div class="sec-label">Mechanical Engineering Practice</div>
+          <p>Industrial and manufacturing-focused engineering services — from process design and plant layout through commissioning and lifecycle management.</p>
+        </div>
+        <div class="svc-grid">
+          <div class="svc-card">
+            <div class="svc-icon"></div>
+            <div class="svc-title">Industrial Systems</div>
+            <ul class="svc-list">
+              <li>Industrial production and processing systems</li>
+              <li>Manufacturing plant design and optimisation</li>
+              <li>Equipment selection and specification</li>
+              <li>Mechanical commissioning support</li>
+            </ul>
+          </div>
+          <div class="svc-card">
+            <div class="svc-icon"></div>
+            <div class="svc-title">CAD/CAE & PLM</div>
+            <ul class="svc-list">
+              <li>CAD, CAM, CAE applications</li>
+              <li>Product Lifecycle Management (PLM)</li>
+              <li>3D modelling and simulation</li>
+              <li>Design for manufacture (DfM)</li>
+            </ul>
+          </div>
+          <div class="svc-card">
+            <div class="svc-icon"></div>
+            <div class="svc-title">Instrumentation & Control</div>
+            <ul class="svc-list">
+              <li>Instrumentation and process control</li>
+              <li>SCADA and DCS systems</li>
+              <li>Control panel design and integration</li>
+              <li>Field instrumentation specification</li>
+            </ul>
+          </div>
+          <div class="svc-card">
+            <div class="svc-icon"></div>
+            <div class="svc-title">Process Engineering</div>
+            <ul class="svc-list">
+              <li>Process flow diagram development</li>
+              <li>P&ID preparation and review</li>
+              <li>Plant layout and piping design</li>
+              <li>Hazard and operability studies (HAZOP)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- CIVIL -->
+      <div id="panel-civil">
+        <div class="svc-panel-hero">
+          <div class="sec-label">Civil Engineering Practice</div>
+          <p>Infrastructure and building engineering solutions focused on durability, constructability, and sustainability — from feasibility through construction supervision.</p>
+        </div>
+        <div class="svc-grid">
+          <div class="svc-card">
+            <div class="svc-icon"></div>
+            <div class="svc-title">Infrastructure</div>
+            <ul class="svc-list">
+              <li>Infrastructure and site development</li>
+              <li>Road and drainage engineering</li>
+              <li>Bridge and structure design</li>
+              <li>Geotechnical investigation support</li>
+            </ul>
+          </div>
+          <div class="svc-card">
+            <div class="svc-icon"></div>
+            <div class="svc-title">Building Engineering</div>
+            <ul class="svc-list">
+              <li>Building and architectural coordination</li>
+              <li>Structural design and analysis</li>
+              <li>Foundation engineering</li>
+              <li>MEP coordination</li>
+            </ul>
+          </div>
+          <div class="svc-card">
+            <div class="svc-icon"></div>
+            <div class="svc-title">Construction Management</div>
+            <ul class="svc-list">
+              <li>Construction engineering and management</li>
+              <li>Construction supervision and QA/QC</li>
+              <li>Cost estimation and contract admin.</li>
+              <li>Site health and safety management</li>
+            </ul>
+          </div>
+          <div class="svc-card">
+            <div class="svc-icon"></div>
+            <div class="svc-title">Environmental Engineering</div>
+            <ul class="svc-list">
+              <li>Environmental impact assessment</li>
+              <li>Sustainability engineering</li>
+              <li>Environmental compliance</li>
+              <li>Waste management and remediation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- EPC -->
+      <div id="panel-epc2">
+        <div class="svc-panel-hero">
+          <div class="sec-label">EPC & Construction Management</div>
+          <p>End-to-end EPC delivery with strict control of scope, cost, schedule, and quality — integrating all engineering disciplines under a single accountable delivery framework.</p>
+        </div>
+        <div class="svc-grid">
+          <div class="svc-card">
+            <div class="svc-icon"></div>
+            <div class="svc-title">Scope & Contract Control</div>
+            <ul class="svc-list">
+              <li>Scope definition and management</li>
+              <li>Contract administration</li>
+              <li>Change management and variation control</li>
+              <li>Claims management</li>
+            </ul>
+          </div>
+          <div class="svc-card">
+            <div class="svc-icon"></div>
+            <div class="svc-title">Procurement Management</div>
+            <ul class="svc-list">
+              <li>Vendor pre-qualification</li>
+              <li>Procurement strategy and execution</li>
+              <li>Material tracking and expediting</li>
+              <li>Inspection and testing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- PM -->
+      <div id="panel-pm">
+        <div class="svc-panel-hero">
+          <div class="sec-label">Project Management & Controls</div>
+          <p>Globally aligned project management methodologies covering planning, risk management, cost control, scheduling, and reporting — aligned to PMI and APM frameworks.</p>
+        </div>
+        <div class="svc-grid">
+          <div class="svc-card">
+            <div class="svc-icon"></div>
+            <div class="svc-title">Planning & Scheduling</div>
+            <ul class="svc-list">
+              <li>Integrated project scheduling (Primavera/MS Project)</li>
+              <li>Critical path analysis</li>
+              <li>Resource allocation and levelling</li>
+              <li>Progress monitoring and reporting</li>
+            </ul>
+          </div>
+          <div class="svc-card">
+            <div class="svc-icon"></div>
+            <div class="svc-title">Risk & Cost Controls</div>
+            <ul class="svc-list">
+              <li>Risk identification and mitigation</li>
+              <li>Cost control and earned value management</li>
+              <li>Budget forecasting and reporting</li>
+              <li>Stakeholder reporting and dashboards</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CAPABILITY MATRIX ══ -->
+<div class="section-wrap eng-grid" id="matrix" style="background:var(--navy-mid);">
+  <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.05;" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#22c55e" fill="none" stroke-width="0.8">
+      <rect x="100" y="50" width="500" height="500"/>
+      <line x1="100" y1="150" x2="600" y2="150"/>
+      <line x1="100" y1="250" x2="600" y2="250"/>
+      <line x1="100" y1="350" x2="600" y2="350"/>
+      <line x1="100" y1="450" x2="600" y2="450"/>
+      <line x1="250" y1="50" x2="250" y2="550"/>
+      <line x1="400" y1="50" x2="400" y2="550"/>
+      <line x1="550" y1="50" x2="550" y2="550"/>
+    </g>
+  </svg>
+  <div class="inner" style="padding-top:5rem;padding-bottom:5rem;position:relative;z-index:1;">
+    <div class="sec-label">Annex B</div>
+    <h2>Service Capability <span>Matrix</span></h2>
+    <p class="sub">A structured view of Voltix's capabilities across consulting, EPC delivery, and commissioning for each engineering discipline.</p>
+    <div style="overflow-x:auto;margin-top:2rem;">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Discipline</th>
+            <th>Consulting & Advisory</th>
+            <th>EPC Delivery</th>
+            <th>Commissioning & Handover</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Electrical Engineering</td>
+            <td>
+              <span class="mtag">Energy Audits</span>
+              <span class="mtag">Feasibility Studies</span>
+              <span class="mtag">System Modelling</span>
+              <span class="mtag">Network Studies</span>
+              <span class="mtag">Design Reviews</span>
+            </td>
+            <td>
+              <span class="mtag">Power Systems EPC</span>
+              <span class="mtag">Renewable & Hybrid</span>
+              <span class="mtag">Automation</span>
+              <span class="mtag">Metering Infrastructure</span>
+            </td>
+            <td>
+              <span class="mtag">Testing & Commissioning</span>
+              <span class="mtag">Performance Validation</span>
+              <span class="mtag">Operational Readiness</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Mechanical Engineering</td>
+            <td>
+              <span class="mtag">Process Design</span>
+              <span class="mtag">Plant Layout</span>
+              <span class="mtag">CAD/CAE Studies</span>
+              <span class="mtag">Equipment Selection</span>
+            </td>
+            <td>
+              <span class="mtag">Industrial Plant EPC</span>
+              <span class="mtag">Instrumentation Install.</span>
+              <span class="mtag">Mechanical Works</span>
+            </td>
+            <td>
+              <span class="mtag">Mechanical Testing</span>
+              <span class="mtag">System Validation</span>
+              <span class="mtag">Start-up Support</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Civil Engineering</td>
+            <td>
+              <span class="mtag">Feasibility</span>
+              <span class="mtag">Conceptual Design</span>
+              <span class="mtag">Detailed Design</span>
+              <span class="mtag">Cost Estimates</span>
+            </td>
+            <td>
+              <span class="mtag">Construction Works</span>
+              <span class="mtag">Infrastructure Delivery</span>
+              <span class="mtag">Supervision</span>
+            </td>
+            <td>
+              <span class="mtag">Structural Inspection</span>
+              <span class="mtag">Compliance Verification</span>
+              <span class="mtag">Handover</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Project Management</td>
+            <td>
+              <span class="mtag">Planning</span>
+              <span class="mtag">Risk Analysis</span>
+              <span class="mtag">Cost & Schedule Modelling</span>
+            </td>
+            <td>
+              <span class="mtag">Construction Management</span>
+              <span class="mtag">Procurement Coordination</span>
+            </td>
+            <td>
+              <span class="mtag">Close-out Management</span>
+              <span class="mtag">Documentation</span>
+              <span class="mtag">Lessons Learned</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Quality, HSE & Compliance</td>
+            <td>
+              <span class="mtag">Policy Development</span>
+              <span class="mtag">Audits</span>
+              <span class="mtag">Compliance Planning</span>
+            </td>
+            <td>
+              <span class="mtag">Site HSE Management</span>
+              <span class="mtag">QA/QC Execution</span>
+            </td>
+            <td>
+              <span class="mtag">Final Compliance Cert.</span>
+              <span class="mtag">HSE Reporting</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ VISION & MISSION ══ -->
+<div class="section-wrap eng-grid" id="vision">
+  <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.07;" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- Topographic contours -->
+    <g stroke="#22c55e" fill="none" stroke-width="0.9">
+      <ellipse cx="300" cy="350" rx="280" ry="200"/>
+      <ellipse cx="300" cy="350" rx="230" ry="160"/>
+      <ellipse cx="300" cy="350" rx="180" ry="120"/>
+      <ellipse cx="300" cy="350" rx="130" ry="80"/>
+      <ellipse cx="300" cy="350" rx="80" ry="45"/>
+      <!-- Right side gear -->
+      <circle cx="1100" cy="350" r="150"/>
+      <circle cx="1100" cy="350" r="110"/>
+      <circle cx="1100" cy="350" r="50"/>
+      <line x1="1100" y1="195" x2="1100" y2="165"/>
+      <line x1="1100" y1="505" x2="1100" y2="535"/>
+      <line x1="945" y1="350" x2="915" y2="350"/>
+      <line x1="1255" y1="350" x2="1285" y2="350"/>
+      <rect x="1088" y="158" width="24" height="35"/>
+      <rect x="1088" y="507" width="24" height="35"/>
+      <rect x="908" y="338" width="35" height="24"/>
+      <rect x="1257" y="338" width="35" height="24"/>
+    </g>
+  </svg>
+  <div class="inner" style="padding-top:5rem;padding-bottom:5rem;position:relative;z-index:1;">
+    <div class="sec-label">Corporate Identity</div>
+    <h2>Vision, Mission &<br><span>Core Values</span></h2>
+    <div class="vm-grid" style="margin-top:2.5rem;">
+      <div class="vm-card">
+        <div class="corner-m tl"></div><div class="corner-m tr"></div>
+        <div class="corner-m bl"></div><div class="corner-m br"></div>
+        <div class="vm-heading">Vision</div>
+        <p class="vm-text">To be a leading African engineering services company delivering world-class, sustainable, and technology-driven solutions that meet international standards and create long-term value for clients and communities.</p>
+      </div>
+      <div class="vm-card">
+        <div class="corner-m tl"></div><div class="corner-m tr"></div>
+        <div class="corner-m bl"></div><div class="corner-m br"></div>
+        <div class="vm-heading">Mission</div>
+        <p class="vm-text">To provide safe, innovative, and cost-effective engineering solutions across civil, mechanical, and electrical disciplines — leveraging skilled human capital, advanced technologies, and internationally aligned processes, while upholding the highest standards of integrity, accountability, and professional excellence.</p>
+      </div>
+    </div>
+    <!-- Values -->
+    <div class="values-grid" style="margin-top:2rem;" id="values">
+      <div class="val-card"><div class="val-num">1</div><div class="val-icon"></div><div class="val-title">Engineering Excellence</div><div class="val-desc">Technically rigorous solutions delivered to international codes and standards on every engagement.</div></div>
+      <div class="val-card"><div class="val-num">2</div><div class="val-icon"></div><div class="val-title">Safety First</div><div class="val-desc">Zero harm philosophy embedded in design, construction, and commissioning activities.</div></div>
+      <div class="val-card"><div class="val-num">3</div><div class="val-icon"></div><div class="val-title">Integrity & Accountability</div><div class="val-desc">Transparent reporting and clear responsibility matrices at every project stage.</div></div>
+      <div class="val-card"><div class="val-num">4</div><div class="val-icon"></div><div class="val-title">International Standards</div><div class="val-desc">ISO-aligned processes, internationally compliant design, and globally recognised delivery methodologies.</div></div>
+      <div class="val-card"><div class="val-num">5</div><div class="val-icon"></div><div class="val-title">Innovation & Technology</div><div class="val-desc">Advanced simulation, digital modelling, IoT, and automation platforms driving precision engineering.</div></div>
+      <div class="val-card"><div class="val-num">6</div><div class="val-icon"></div><div class="val-title">Client-Centric Delivery</div><div class="val-desc">Client expectations exceeded through structured quality management and continuous improvement.</div></div>
+      <div class="val-card"><div class="val-num">7</div><div class="val-icon"></div><div class="val-title">Value Engineering</div><div class="val-desc">Cost-effective solutions without compromise on safety, quality, or technical integrity.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ QHSE ══ -->
+<div class="section-wrap eng-grid" id="qhse" style="background:var(--navy-mid);">
+  <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.055;" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#22c55e" fill="none" stroke-width="0.9">
+      <!-- Shield / safety symbol -->
+      <path d="M200,50 L300,50 L320,80 L300,220 L200,260 L100,220 L80,80 Z"/>
+      <path d="M200,80 L270,80 L285,105 L270,200 L200,230 L130,200 L115,105 Z"/>
+      <text x="200" y="165" font-size="40" text-anchor="middle" fill="none" stroke="#22c55e" stroke-width="1">✓</text>
+      <!-- ISO standard rings -->
+      <circle cx="1100" cy="300" r="120"/>
+      <circle cx="1100" cy="300" r="90"/>
+      <circle cx="1100" cy="300" r="60"/>
+      <text x="1100" y="308" font-size="16" text-anchor="middle" fill="#22c55e" stroke="none" font-family="monospace">ISO</text>
+    </g>
+  </svg>
+  <div class="inner" style="padding-top:5rem;padding-bottom:5rem;position:relative;z-index:1;">
+    <div class="sec-label">Quality, Health, Safety & Environment</div>
+    <h2>QHSE <span>Framework</span></h2>
+    <p class="sub">A zero-compromise safety culture supported by structured quality management systems, environmental responsibility, and transparent accountability at all project stages.</p>
+    <div class="qhse-grid">
+      <div class="qhse-card">
+        <div class="qhse-icon">1</div>
+        <div class="qhse-title">Quality Policy</div>
+        <div class="qhse-desc">Engineering services that meet or exceed client expectations through structured quality management systems, continuous improvement, and strict adherence to applicable codes, standards, and contractual requirements.</div>
+      </div>
+      <div class="qhse-card">
+        <div class="qhse-icon">2</div>
+        <div class="qhse-title">Health & Safety</div>
+        <div class="qhse-desc">Zero harm philosophy. Safety considerations integrated into design, construction, commissioning, and operational activities to protect personnel, clients, and the public at all times.</div>
+      </div>
+      <div class="qhse-card">
+        <div class="qhse-icon">3</div>
+        <div class="qhse-title">Environmental Responsibility</div>
+        <div class="qhse-desc">Environmentally responsible engineering practices, efficient resource utilisation, and compliance with environmental regulations to minimise project footprints and support sustainability goals.</div>
+      </div>
+      <div class="qhse-card">
+        <div class="qhse-icon">4</div>
+        <div class="qhse-title">Accountability</div>
+        <div class="qhse-desc">Clear responsibility matrices, documentation discipline, and transparent reporting ensure accountability at all project stages — from design brief through final handover certification.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TARGET CLIENTS ══ -->
+<div class="section-wrap eng-grid" id="clients" style="background:var(--navy-deep);">
+  <div class="inner" style="padding-top:5rem;padding-bottom:5rem;position:relative;z-index:1;">
+    <div class="sec-label">Client Base</div>
+    <h2>Target <span>Clients</span></h2>
+    <p class="sub">Voltix serves a diverse client base — from international development partners to private sector operators — wherever technically rigorous engineering is required.</p>
+    <div class="clients-grid">
+      <div class="client-card"><div class="client-icon">✦</div><div class="client-name">International Organisations</div><div class="client-type">Development Partners & NGOs</div></div>
+      <div class="client-card"><div class="client-icon">✦</div><div class="client-name">Government Agencies</div><div class="client-type">MDAs & Public Sector Bodies</div></div>
+      <div class="client-card"><div class="client-icon">✦</div><div class="client-name">Corporate & Industrial</div><div class="client-type">Manufacturers & Operators</div></div>
+      <div class="client-card"><div class="client-icon">✦</div><div class="client-name">Infrastructure Developers</div><div class="client-type">Asset Owners & Developers</div></div>
+      <div class="client-card"><div class="client-icon">✦</div><div class="client-name">Institutions</div><div class="client-type">Educational & Research Bodies</div></div>
+      <div class="client-card"><div class="client-icon">✦</div><div class="client-name">Private Clients</div><div class="client-type">High-value Individual Mandates</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CONTACT ══ -->
+<div class="section-wrap eng-grid" id="contact">
+  <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.06;" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#22c55e" fill="none" stroke-width="0.9">
+      <!-- Nigeria map outline rough -->
+      <path d="M600,100 L700,80 L800,100 L850,150 L820,220 L800,280 L750,320 L720,400 L680,420 L640,400 L600,350 L570,300 L550,250 L560,200 Z" stroke-width="1"/>
+      <!-- Location pin -->
+      <circle cx="680" cy="220" r="15"/>
+      <line x1="680" y1="235" x2="680" y2="280"/>
+    </g>
+  </svg>
+  <div class="inner" style="padding-top:5rem;padding-bottom:5rem;position:relative;z-index:1;">
+    <div style="text-align:center;margin-bottom:2.5rem;">
+      <div class="sec-label" style="justify-content:center;">Engage Voltix</div>
+      <h2>Request a <span>Consultation</span></h2>
+      <p class="sub" style="margin:1rem auto;text-align:center;">Ready to discuss your engineering requirements? Our technical team is available for project enquiries, capability presentations, and consultations.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="cinfo">
+        <div class="ci-item">
+          <div class="ci-icon">📍</div>
+          <div><h4>Head Office</h4><p>No. 2 Madallah Crescent<br>Kaduna, Nigeria</p></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">📞</div>
+          <div><h4>Phone</h4><p>+234 800 VOLTIX<br>+234 900 000 0000</p></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">✉️</div>
+          <div><h4>Email</h4><p>info@voltixcompany.com<br>projects@voltixcompany.com</p></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">🕐</div>
+          <div><h4>Business Hours</h4><p>Mon–Fri: 8:00 AM – 5:30 PM<br>Sat: By appointment</p></div>
+        </div>
+        <div class="cert-row">
+          <div class="cert-badge">ISO 9001</div>
+          <div class="cert-badge">COREN Registered</div>
+          <div class="cert-badge">HSE Certified</div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="fr">
+          <div class="fg"><label>First Name</label><input type="text" placeholder="First name" required/></div>
+          <div class="fg"><label>Last Name</label><input type="text" placeholder="Last name" required/></div>
+        </div>
+        <div class="fr">
+          <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com" required/></div>
+          <div class="fg"><label>Phone</label><input type="tel" placeholder="+234 xxx xxx xxxx"/></div>
+        </div>
+        <div class="fg">
+          <label>Organisation</label>
+          <input type="text" placeholder="Company or institution name"/>
+        </div>
+        <div class="fg">
+          <label>Enquiry Type</label>
+          <select required>
+            <option value="" disabled selected>Select service area...</option>
+            <option>Electrical Engineering</option>
+            <option>Mechanical Engineering</option>
+            <option>Civil Engineering</option>
+            <option>EPC Delivery</option>
+            <option>Commissioning</option>
+            <option>Project Management</option>
+            <option>General Enquiry</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Project Description</label>
+          <textarea placeholder="Briefly describe your project or enquiry..."></textarea>
+        </div>
+        <button type="submit" class="btn-p">Submit Enquiry</button>
+        <div id="formMsg" style="display:none;padding:12px 16px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.35);color:var(--green);font-size:12px;font-family:'Montserrat',sans-serif;letter-spacing:2px;text-transform:uppercase;">
+          ✓ Enquiry received — our team will respond within 24 hours.
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="foot-inner">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="logo-bolt" style="width:30px;height:30px;"></div>
+        <div>
+          <div class="foot-logo-name">VOLTIX</div>
+          <div class="foot-logo-tag">Company Ltd</div>
+        </div>
+      </div>
+      <p class="foot-desc">Engineering Certainty. Delivered. — Multidisciplinary engineering services across Civil, Mechanical, and Electrical disciplines, operating to international best practice standards.</p>
+      <p style="font-size:11px;color:var(--dim);margin-top:.75rem;">📍 No. 2 Madallah Crescent, Kaduna, Nigeria</p>
+    </div>
+    <div class="foot-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#services">Electrical Engineering</a></li>
+        <li><a href="#services">Mechanical Engineering</a></li>
+        <li><a href="#services">Civil Engineering</a></li>
+        <li><a href="#services">EPC Delivery</a></li>
+        <li><a href="#services">Commissioning</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#vision">Vision & Mission</a></li>
+        <li><a href="#values">Core Values</a></li>
+        <li><a href="#qhse">QHSE</a></li>
+        <li><a href="#clients">Clients</a></li>
+        <li><a href="#matrix">Capabilities</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="#contact">Request Consultation</a></li>
+        <li><a href="#contact">Project Enquiry</a></li>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Voltix Company Ltd. All rights reserved. Kaduna, Nigeria.</span>
+    <span>Engineering Consulting · Design · EPC · Commissioning · PM</span>
+  </div>
+</footer>
+
+<script>
+  // Hamburger
+  document.getElementById('hbg').addEventListener('click', () => {
+    const m = document.getElementById('mob-menu');
+    m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+  });
+
+  // Service tab switching
+  function showPanel(id, btn) {
+    document.querySelectorAll('.stab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.services-panels > div').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + id).classList.add('active');
+  }
+
+  // Contact form
+  function handleSubmit(e) {
+    e.preventDefault();
+    const msg = document.getElementById('formMsg');
+    const btn = e.target.querySelector('button[type=submit]');
+    msg.style.display = 'block';
+    btn.textContent = 'Sent ✓';
+    btn.style.background = '#15803d';
+    setTimeout(() => {
+      msg.style.display = 'none';
+      btn.textContent = 'Submit Enquiry';
+      btn.style.background = '';
+      e.target.reset();
+    }, 6000);
+  }
+
+  // Navbar shadow on scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('topnav').style.boxShadow =
+      window.scrollY > 60 ? '0 4px 30px rgba(0,0,0,0.6)' : '';
+  });
+
+  // Scroll-reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll(
+    '.svc-card,.val-card,.qhse-card,.client-card,.epc-step,.vm-card,.ci-item,.mtag'
+  ).forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    obs.observe(el);
+  });
+</script>
+</body>
+</html>
